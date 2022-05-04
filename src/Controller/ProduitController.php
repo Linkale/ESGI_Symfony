@@ -16,12 +16,12 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class ProduitController extends AbstractController
 {
     #[Route('/produits', name: 'produits')]
-    public function countries(ProduitRepository $produitRepository): Response
+    public function produits(ProduitRepository $produitRepository): Response
     {
-        $countries = $produitRepository->findAll();
+        $produits = $produitRepository->findAll();
 
         return $this->render('produit/index.html.twig', [
-            'countries' => $countries,
+            'produits' => $produits,
         ]);
     }
 
@@ -70,7 +70,7 @@ class ProduitController extends AbstractController
         $entityManager->remove($produit);
         $entityManager->flush();
 
-        return $this->redirectToRoute('countries');
+        return $this->redirectToRoute('produits');
     }
 
     #[Route('/produit/{produitName}', name: 'produit')]
