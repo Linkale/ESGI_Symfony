@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    
+    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+        {{ encore_entry_script_tags('list') }}
+    {% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-light bg-faded">
+    <a class="navbar-brand d-md-none" href="#">Brand</a>
+    <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="d-md-flex d-block w-100">
+        <div class="collapse navbar-collapse mx-auto w-auto justify-content-center" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="navbar-brand mx-2 d-none d-md-inline" href="{{ path('homePage') }}">Acceuil <span class="sr-only">(current)</span></a>
+                <a class="navbar-brand mx-2 d-none d-md-inline" href="">1</a>
+                <a class="navbar-brand mx-2 d-none d-md-inline" href="">2</a>
+                <a class="navbar-brand mx-2 d-none d-md-inline" href="{{ path('logout') }}">déconnexion</a>
+            </div>
+        </div>
+    </div>
+</nav>
+{% block body %}{% endblock %}
+
+</body>
+</html>
