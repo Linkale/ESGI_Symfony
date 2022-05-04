@@ -46,9 +46,9 @@ class CatalogueController extends AbstractController
     }
 
     #[Route('/catalogue/update/{id}', name: 'update_catalogue')]
-    public function updateCatalogue(Catalogue $catalogue, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function updateCatalogue(Catalogue $catalogue, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(CityType::class, $catalogue);
+        $form = $this->createForm(CatalogueType::class, $catalogue);
 
         $form->handleRequest($request);
 

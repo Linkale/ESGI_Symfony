@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EuroPlant - {{ produit.nom }}{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-center">
+        <div class="col-md-6">
+			<a href="{{ path('update_produit', {id: produit.id})}}">Modifier</a>
+            <a href="{{ path('delete_produit', {id: produit.id})}}">Supprimer</a>
+            <h1>{{ produit.nom }} !</h1>
+            <p>{{ produit.description }}</p>			
+		</div> 
+    </div>
+{% endblock %}

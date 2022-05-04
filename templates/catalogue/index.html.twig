@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EuroPlant{% endblock %}
+
+{% block body %}
+
+    <div class="d-flex justify-content-center">
+        <h1>Liste des catalogues <a href="{{ path('new_catalogue') }}">add</a></h1>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="col-8">
+            {% if catalogues is empty %}
+                <p>Aucun catalogue</p>
+            {% else %}
+                <table class="table table-striped">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Nom</th>
+                                <th scope="col">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for catalogue in catalogues %}
+                                <tr>
+                                    <td><a href="{{ path('catalogue', {catalogueName: catalogue.nom}) }}">{{ catalogue.nom | upper }}</a></td>
+                                    <td>{{ catalogue.description }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

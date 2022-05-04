@@ -48,7 +48,7 @@ class ProduitController extends AbstractController
     #[Route('/produit/update/{id}', name: 'update_produit')]
     public function updateProduit(Produit $produit, Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
-        $form = $this->createForm(CityType::class, $produit);
+        $form = $this->createForm(ProduitType::class, $produit);
 
         $form->handleRequest($request);
 
