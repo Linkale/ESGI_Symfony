@@ -22,6 +22,11 @@ class Produit
     #[ORM\ManyToOne(targetEntity: Catalogue::class, inversedBy: 'produits')]
     private $catalogue;
 
+    public function __toString()
+    {
+        return $this->nom;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
