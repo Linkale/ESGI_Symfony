@@ -7,7 +7,6 @@
         <div class="col-md-6">
             <a href="{{ path('update_catalogue', {id: catalogue.id})}}">Modifier</a>
             <a href="{{ path('delete_catalogue', {id: catalogue.id})}}">Supprimer</a>
-            <a href="{{app.request.headers.get('referer')}}"><i class="fa-solid fa-arrow-rotate-left"></i></a>
             <h1>{{ catalogue.nom }}</h1>
             <p>{{ catalogue.description }}</p>
             <ul>

@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Catalogue;
+use App\Entity\Commande;
 use App\Entity\Produit;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -35,13 +36,29 @@ class AppFixtures extends Fixture
         $catalogue2->setNom("Fleur printemps");
         $catalogue2->setDescription($faker->realText($maxNbChars = 200, $indexSize = 2));
         $manager->persist($catalogue2);
+
+        $produitTest = new Produit();
+        $produitTest->setNom($faker->name);
+        $produitTest->setDescription($faker->realText($maxNbChars = 200, $indexSize = 2));
+        $produitTest->setCatalogue($catalogue2);
+        $produitTest->setPrix($faker->randomFloat($nbMaxDecimals = NULL, $min = 0, $max = 1000));
+        $manager->persist($produitTest);
         
         for ($i = 0; $i < 20; $i++) {
             $produit = new Produit();
             $produit->setNom($faker->name);
             $produit->setDescription($faker->realText($maxNbChars = 200, $indexSize = 2));
             $produit->setCatalogue($catalogue);
+            $produit->setPrix($faker->randomFloat($nbMaxDecimals = NULL, $min = 0, $max = 1000));
             $manager->persist($produit);
+        }
+
+        for ($i = 0; $i < 5; $i++) {
+            $commande = new Commande();
+            $commande->setDate(new \DateTimeImmutable('Europe/Paris'));
+            $commande->setUser($user);
+            $commande->addProduit($produitTest);
+            $manager->persist($commande);
         }
 
         $manager->flush();

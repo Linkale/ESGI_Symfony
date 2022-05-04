@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EuroPlant{% endblock %}
+
+{% block body %}
+
+    <div class="d-flex justify-content-center">
+        <h1>Liste des commandes <a href="{{ path('new_commande') }}">add</a></h1>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="col-8">
+            {% if commandes is empty %}
+                <p>Aucun commande</p>
+            {% else %}
+                <table class="table table-striped">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">User</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for commande in commandes %}
+                                <tr>
+                                    <td><a href="{{ path('commande', {commandeId: commande.id}) }}">{{ commande.date|date("m/d/Y h:i:s") }}</a></td>
+                                    <td>{{ commande.user.email }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
