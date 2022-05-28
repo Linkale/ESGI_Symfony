@@ -9,6 +9,7 @@
             <a href="{{ path('delete_commande', {id: commande.id})}}">Supprimer</a>
             <h1>{{ commande.date|date("m/d/Y h:i:s") }}</h1>
             <p>{{ commande.user.email }}</p>
+            <p><a href="{{ commande.facture|pathFileFactures }}">facture : {{ commande.facture }}</a></p>
             <ul>
                 {% for produit in commande.produits %}
                     <li>{{ produit.nom }}</li>

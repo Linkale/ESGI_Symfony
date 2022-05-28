@@ -24,6 +24,9 @@ class Commande
     #[ORM\ManyToMany(targetEntity: Produit::class, inversedBy: 'commandes')]
     private $produits;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $facture;
+
     public function __construct()
     {
         $this->produits = new ArrayCollection();
@@ -90,6 +93,18 @@ class Commande
     public function removeProduit(Produit $produit): self
     {
         $this->produits->removeElement($produit);
+
+        return $this;
+    }
+
+    public function getFacture(): ?string
+    {
+        return $this->facture;
+    }
+
+    public function setFacture(?string $facture): self
+    {
+        $this->facture = $facture;
 
         return $this;
     }

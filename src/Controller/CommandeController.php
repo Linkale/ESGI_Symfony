@@ -54,6 +54,22 @@ class CommandeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $facture */
+            $factureFile = $form->get('facture')->getData();
+            if ($factureFile) {
+                $originalFilename = pathinfo($factureFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$factureFile->guessExtension();
+
+                try {
+                    $factureFile->move(
+                        $this->getParameter('factures_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                }
+                $commande->setFacture($newFilename);
+            }
             $entityManager->persist($commande);
             $entityManager->flush();
 

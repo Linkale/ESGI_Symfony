@@ -22,10 +22,17 @@ class AppFixtures extends Fixture
     {
         $faker = Faker\Factory::create('fr_FR');
 
-        $user = new User();
-        $user->setEmail("test");
-        $user->setPassword($this->userPasswordHasherInterface->hashPassword($user, "test"));
-        $manager->persist($user);
+        $client = new User();
+        $client->setEmail("client");
+        $client->setRoles(["ROLE_USER"]);
+        $client->setPassword($this->userPasswordHasherInterface->hashPassword($client, "client"));
+        $manager->persist($client);
+
+        $admin = new User();
+        $admin->setEmail("admin");
+        $admin->setRoles(["ROLE_ADMIN"]);
+        $admin->setPassword($this->userPasswordHasherInterface->hashPassword($admin, "admin"));
+        $manager->persist($admin);
 
         $catalogue = new Catalogue();
         $catalogue->setNom("Fleur");
@@ -56,7 +63,7 @@ class AppFixtures extends Fixture
         for ($i = 0; $i < 5; $i++) {
             $commande = new Commande();
             $commande->setDate(new \DateTimeImmutable('Europe/Paris'));
-            $commande->setUser($user);
+            $commande->setUser($client);
             $commande->addProduit($produitTest);
             $manager->persist($commande);
         }
