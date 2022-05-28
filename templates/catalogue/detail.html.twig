@@ -11,7 +11,7 @@
             <p>{{ catalogue.description }}</p>
             <ul>
                 {% for produit in catalogue.produits %}
-                    <li>{{ produit.nom }}</li>
+                    <li><a href="{{ path('produit', {produitName: produit.nom}) }}">{{ produit.nom }}</a></li>
                 {% endfor %}
             </ul>
         </div>
