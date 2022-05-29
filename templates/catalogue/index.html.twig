@@ -4,31 +4,46 @@
 
 {% block body %}
 
-    <div class="d-flex justify-content-center">
-        <h1>Liste des catalogues <a href="{{ path('new_catalogue') }}">add</a></h1>
-    </div>
-    <div class="d-flex justify-content-center">
-        <div class="col-8">
-            {% if catalogues is empty %}
-                <p>Aucun catalogue</p>
-            {% else %}
-                <table class="table table-striped">
-                        <thead class="thead-light">
-                            <tr>
-                                <th scope="col">Nom</th>
-                                <th scope="col">Description</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for catalogue in catalogues %}
-                                <tr>
-                                    <td><a href="{{ path('catalogue', {catalogueName: catalogue.nom}) }}">{{ catalogue.nom | upper }}</a></td>
-                                    <td>{{ catalogue.description }}</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-            {% endif %}
+
+  <!--Main layout-->
+  <main class="my-5">
+    <div class="container">
+      <!--Section: Content-->
+      <section class="text-center">
+        <h4 class="mb-5"><strong>Liste des catalogues</strong> <a href="{{ path('new_catalogue') }}" class="btn btn-primary">Ajouter</a> </h4>
+      
+        {% if catalogues is empty %}
+            <p>Aucun catalogue</p>
+        {% else %}
+        <div class="row">
+         {% for catalogue in catalogues %}
+
+          <div class="col-lg-4 col-md-12 mb-4">
+            <div class="card" style="border: solid 1px">
+              <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{ catalogue.nom | upper }}</h5>
+                <p class="card-text">
+                  {{ catalogue.description }}
+                </p>
+                <a href="{{ path('catalogue', {catalogueName: catalogue.nom}) }}" class="btn btn-primary">Accéder au catalogue</a>
+              </div>
+            </div>
+          </div>
+          
+
+        {% endfor %}
+
         </div>
+        {% endif %}
+        </div>
+      </section>
+      <!--Section: Content-->
+
+
     </div>
+  </main>
+  <!--Main layout-->
+
 {% endblock %}

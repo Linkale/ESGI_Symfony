@@ -6,10 +6,12 @@
     {{ form_start(form) }}
         <div class='d-flex justify-content-center'>
             <div class='row col-6'>
+
                 {{ form_row(form.nom, {'attr': {'type': "text", 'class': "form-control"}}) }}
-                {{ form_row(form.description) }}
+
+                {{ form_row(form.description, {'attr': {'type': "text", 'class': "form-control"}}) }}
                 
-                {{ form_row(form.submit, {'label': 'Sauvegarder', 'attr': {'class': "btn btn-primary"} }) }}
+                {{ form_row(form.submit, {'label': 'Sauvegarder', 'attr': {'class': "btn btn-primary mt-4"} }) }}
             </div>
         </div>
     {{ form_end(form) }}

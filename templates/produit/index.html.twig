@@ -3,31 +3,43 @@
 {% block title %}EuroPlant{% endblock %}
 
 {% block body %}
-    <div class="d-flex justify-content-center">
-        <h1>Produits <a href="{{ path('new_produit') }}">add</h1>
-    </div>
-    <div class="d-flex justify-content-center">
-        <div class="col-8">
-            {% if produits is empty %}
-                <p>Aucun produit</p>
-            {% else %}
-                <table class="table table-striped">
-                    <thead class="thead-light">
-                        <tr>
-                            <th scope="col">Nom</th>
-                            <th scope="col">description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for produit in produits %}
-                            <tr>
-                                <td><a href="{{ path('produit', {produitName: produit.nom}) }}">{{ produit.nom | upper }}</a></td>
-                                <td>{{ produit.description }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            {% endif %}
+  <main class="my-5">
+    <div class="container">
+    <section class="text-center">
+
+    <h4 class="mb-5"><strong>Liste des produits</strong> <a href="{{ path('new_produit') }}" class="btn btn-primary">Ajouter</a> </h4>
+
+    {% if produits is empty %}
+        <p>Aucun produit</p>
+    {% else %}
+    <div class="row">
+    {% for produit in produits %}
+
+
+        <div class="col-lg-4 col-md-12 mb-4">
+        <div class="card" style="border: solid 1px">
+            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+            </div>
+            <div class="card-body">
+            <h5 class="card-title">{{ produit.nom | upper }}</h5>
+            <p class="card-text">
+                {{ produit.description }}
+            </p>
+            <a href="{{ path('produit', {produitName: produit.nom}) }}" class="btn btn-primary">Accéder au catalogue</a>
+            </div>
         </div>
+        </div>
+
+
+    {% endfor %}
     </div>
+
+
+
+    {% endif %}
+
+
+    </section>
+    </div>
+  </main>
 {% endblock %}
