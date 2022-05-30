@@ -78,6 +78,7 @@
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "fzaninotto/faker": "^1.5",
+        "phpstan/phpstan": "^1.7",
         "symfony/maker-bundle": "^1.40",
         "symfony/stopwatch": "6.0.*",
         "symfony/web-profiler-bundle": "6.0.*"

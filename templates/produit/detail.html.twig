@@ -26,7 +26,9 @@
                 <p class="card-text">
                   {{ produit.description }}
                 </p>
-                <a  href="{{ path('commander_produit', {produit: produit.id})}}" class="btn btn-primary mb-4">Commander</a>
+                {% if app.user.getRoles() == ['ROLE_USER'] %}
+                  <a  href="{{ path('commander_produit', {produit: produit.id})}}" class="btn btn-primary mb-4">Commander</a>
+                {% endif %}
                 {% if app.user.getRoles() == ['ROLE_ADMIN','ROLE_USER'] %}
                   <a  href="{{ path('update_produit', {id: produit.id})}}" class="btn btn-primary mb-4">Modifier</a>
                   <a  href="{{ path('delete_produit', {id: produit.id})}}" class="btn btn-primary mb-4">Supprimer</a>

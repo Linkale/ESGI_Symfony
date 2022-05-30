@@ -101,6 +101,9 @@
     "nikic/php-parser": {
         "version": "v4.13.2"
     },
+    "phpstan/phpstan": {
+        "version": "1.7.4"
+    },
     "psr/cache": {
         "version": "3.0.0"
     },
