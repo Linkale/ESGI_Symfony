@@ -12,7 +12,7 @@
             {% if commandes is empty %}
                 <p>Aucun commande</p>
             {% else %}
-                <table class="table table-striped">
+                <table class="table table-striped display" id="table_id">
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">Date</th>
@@ -42,4 +42,25 @@
             {% endif %}
         </div>
     </div>
+
+    <script>
+$(document).ready( function () {
+    $('#table_id').DataTable({
+        "language": {
+            "lengthMenu": "Affichage de _MENU_ résultats par page",
+            "zeroRecords": "Nothing found - sorry",
+            "info": "Affichage page _PAGE_ à  _PAGES_",
+            "infoEmpty": "Pas de résultats",
+            "infoFiltered": "(filtered from _MAX_ total records)",
+            "search": "Rechercher",
+            "paginate": {
+                 "next": "Suivant",
+                 "previous": "Précédent"
+             }
+        }
+    });
+} );
+
+</script>
+
 {% endblock %}
