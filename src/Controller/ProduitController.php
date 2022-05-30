@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Commande;
 use App\Entity\Produit;
 use App\Form\ProduitType;
 use App\Repository\ProduitRepository;
@@ -85,5 +86,20 @@ class ProduitController extends AbstractController
         return $this->render('produit/detail.html.twig', [
             'produit' => $produit,
         ]);
+    }
+
+    #[Route('/produit/commander/{produit}', name: 'commander_produit')]
+    public function commanderProduit(Produit $produit, EntityManagerInterface $entityManager): Response
+    {
+        $commande = new Commande();
+        $commande->addProduit($produit);
+        $commande->setUser($this->getUser());
+        $commande->setDate(new \DateTimeImmutable('Europe/Paris'));
+        $entityManager->persist($commande);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('commande', array(
+            'commandeId' => $commande->getId(),
+            ));
     }
 }
