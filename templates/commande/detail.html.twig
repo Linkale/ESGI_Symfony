@@ -5,22 +5,23 @@
 {% block body %}
     <div class="d-flex justify-content-center">
         <div class="col-md-6">
-        {% if app.user.getRoles() == ['ROLE_ADMIN','ROLE_USER'] %}
-            <a href="{{ path('update_commande', {id: commande.id})}}">Modifier</a>
-            <a href="{{ path('delete_commande', {id: commande.id})}}">Supprimer</a>
-        {% endif %}
-            <h1>{{ commande.date|date("d/m/Y h:i:s") }}</h1>
-            <p>{{ commande.user.email }}</p>
+            <h4><a onclick="history.go(-1);" class="mx-2"><i class="fa-solid fa-arrow-left"></i></a> {{ commande.date|date("d/m/Y h:i:s") }}</h4>
+            <p>Utilisateur : {{ commande.user.email }}</p>
             {% if commande.facture is defined and commande.facture != null %}
                 <p><a href="{{ commande.facture|pathFileFactures }}">facture : {{ commande.facture }}</a></p>
             {% else %}
                 <p>Aucune facture disponible</p>
             {% endif %}
+            <p>Produits commandés :</p>
             <ul>
                 {% for produit in commande.produits %}
                     <li>{{ produit.nom }}</li>
                 {% endfor %}
             </ul>
+            {% if app.user.getRoles() == ['ROLE_ADMIN','ROLE_USER'] %}
+                <a href="{{ path('update_commande', {id: commande.id})}}" class="btn btn-primary mt-2">Modifier</a>
+                <a href="{{ path('delete_commande', {id: commande.id})}}" class="btn btn-primary">Supprimer</a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

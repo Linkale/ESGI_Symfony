@@ -12,7 +12,7 @@
     
       <!--Section: Content-->
       <section class="text-center">
-       <h4 class="mb-4"><strong>Catalogue : </strong> {{ catalogue.nom }}  </h4>
+       <h4 class="mb-4"><a onclick="history.go(-1);" class="mx-2"><i class="fa-solid fa-arrow-left"></i></a> <strong>Catalogue : </strong> {{ catalogue.nom }}  </h4>
       {% if app.user.getRoles() == ['ROLE_ADMIN','ROLE_USER'] %}
         <a  href="{{ path('update_catalogue', {id: catalogue.id})}}" class="btn btn-primary">Modifier</a>
         <a  href="{{ path('delete_catalogue', {id: catalogue.id})}}" class="btn btn-primary">Supprimer</a>
