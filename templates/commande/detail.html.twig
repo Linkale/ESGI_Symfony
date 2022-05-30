@@ -5,11 +5,17 @@
 {% block body %}
     <div class="d-flex justify-content-center">
         <div class="col-md-6">
+        {% if app.user.getRoles() == ['ROLE_ADMIN','ROLE_USER'] %}
             <a href="{{ path('update_commande', {id: commande.id})}}">Modifier</a>
             <a href="{{ path('delete_commande', {id: commande.id})}}">Supprimer</a>
+        {% endif %}
             <h1>{{ commande.date|date("m/d/Y h:i:s") }}</h1>
             <p>{{ commande.user.email }}</p>
-            <p><a href="{{ commande.facture|pathFileFactures }}">facture : {{ commande.facture }}</a></p>
+            {% if commande.facture is defined and commande.facture != null %}
+                <p><a href="{{ commande.facture|pathFileFactures }}">facture : {{ commande.facture }}</a></p>
+            {% else %}
+                <p>Aucune facture disponible</p>
+            {% endif %}
             <ul>
                 {% for produit in commande.produits %}
                     <li>{{ produit.nom }}</li>

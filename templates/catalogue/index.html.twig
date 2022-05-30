@@ -10,7 +10,7 @@
     <div class="container">
       <!--Section: Content-->
       <section class="text-center">
-        <h4 class="mb-5"><strong>Liste des catalogues</strong> <a href="{{ path('new_catalogue') }}" class="btn btn-primary">Ajouter</a> </h4>
+        <h4 class="mb-5"><strong>Liste des catalogues</strong> {% if app.user.getRoles() == ['ROLE_ADMIN','ROLE_USER'] %}<a href="{{ path('new_catalogue') }}" class="btn btn-primary">Ajouter</a> {% endif %} </h4>
       
         {% if catalogues is empty %}
             <p>Aucun catalogue</p>

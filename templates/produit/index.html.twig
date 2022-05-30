@@ -7,7 +7,7 @@
     <div class="container">
     <section class="text-center">
 
-    <h4 class="mb-5"><strong>Liste des produits</strong> <a href="{{ path('new_produit') }}" class="btn btn-primary">Ajouter</a> </h4>
+    <h4 class="mb-5"><strong>Liste des produits</strong>{% if app.user.getRoles() == ['ROLE_ADMIN','ROLE_USER'] %} <a href="{{ path('new_produit') }}" class="btn btn-primary">Ajouter</a> {% endif %} </h4>
 
     {% if produits is empty %}
         <p>Aucun produit</p>

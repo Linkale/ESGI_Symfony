@@ -20,12 +20,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for commande in commandes %}
-                                <tr>
-                                    <td><a href="{{ path('commande', {commandeId: commande.id}) }}">{{ commande.date|date("m/d/Y h:i:s") }}</a></td>
-                                    <td>{{ commande.user.email }}</td>
-                                </tr>
-                            {% endfor %}
+                            {% if app.user.getRoles() == ['ROLE_ADMIN','ROLE_USER'] %}
+                                {% for commande in commandes %}
+                                    <tr>
+                                        <td><a href="{{ path('commande', {commandeId: commande.id}) }}">{{ commande.date|date("m/d/Y h:i:s") }}</a></td>
+                                        <td>{{ commande.user.email }}</td>
+                                    </tr>
+                                {% endfor %}
+                            {% elseif app.user.getRoles() == ['ROLE_USER'] %}
+                                {% for commande in commandes %}
+                                    {% if app.user.getRoles() == commande.user.getRoles() %}
+                                        <tr>
+                                            <td><a href="{{ path('commande', {commandeId: commande.id}) }}">{{ commande.date|date("m/d/Y h:i:s") }}</a></td>
+                                            <td>{{ commande.user.email }}</td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
                         </tbody>
                     </table>
             {% endif %}
