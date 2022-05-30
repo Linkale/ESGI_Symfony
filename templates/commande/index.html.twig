@@ -23,7 +23,7 @@
                             {% if app.user.getRoles() == ['ROLE_ADMIN','ROLE_USER'] %}
                                 {% for commande in commandes %}
                                     <tr>
-                                        <td><a href="{{ path('commande', {commandeId: commande.id}) }}">{{ commande.date|date("m/d/Y h:i:s") }}</a></td>
+                                        <td><a href="{{ path('commande', {commandeId: commande.id}) }}">{{ commande.date|date("d/m/Y h:i:s") }}</a></td>
                                         <td>{{ commande.user.email }}</td>
                                     </tr>
                                 {% endfor %}
@@ -31,7 +31,7 @@
                                 {% for commande in commandes %}
                                     {% if app.user.getId() == commande.user.getId() %}
                                         <tr>
-                                            <td><a href="{{ path('commande', {commandeId: commande.id}) }}">{{ commande.date|date("m/d/Y h:i:s") }}</a></td>
+                                            <td><a href="{{ path('commande', {commandeId: commande.id}) }}">{{ commande.date|date("d/m/Y h:i:s") }}</a></td>
                                             <td>{{ commande.user.email }}</td>
                                         </tr>
                                     {% endif %}

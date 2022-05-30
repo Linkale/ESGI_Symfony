@@ -9,7 +9,7 @@
             <a href="{{ path('update_commande', {id: commande.id})}}">Modifier</a>
             <a href="{{ path('delete_commande', {id: commande.id})}}">Supprimer</a>
         {% endif %}
-            <h1>{{ commande.date|date("m/d/Y h:i:s") }}</h1>
+            <h1>{{ commande.date|date("d/m/Y h:i:s") }}</h1>
             <p>{{ commande.user.email }}</p>
             {% if commande.facture is defined and commande.facture != null %}
                 <p><a href="{{ commande.facture|pathFileFactures }}">facture : {{ commande.facture }}</a></p>
