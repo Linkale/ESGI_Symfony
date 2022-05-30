@@ -61,7 +61,11 @@
                 <a class="navbar-brand mx-2 d-none d-md-inline" href="{{ path('catalogues') }}">Catalogues</a>
                 <a class="navbar-brand mx-2 d-none d-md-inline" href="{{ path('produits') }}">Produits</a>
                 <a class="navbar-brand mx-2 d-none d-md-inline" href="{{ path('commandes') }}">Commandes</a>
+                {% if is_granted("ROLE_USER") %}
                 <a class="navbar-brand mx-2 d-none d-md-inline" href="{{ path('logout') }}">déconnexion</a>
+                {% else %}
+                <a class="navbar-brand mx-2 d-none d-md-inline" href="{{ path('login') }}">connexion</a>
+                {% endif %}
             </div>
         </div>
     </div>
